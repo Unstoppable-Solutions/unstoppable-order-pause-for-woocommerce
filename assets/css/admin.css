@@ -1,0 +1,550 @@
+/**
+ * Unstoppable Order Pause - Admin Styles
+ *
+ * @package Unstoppable_Order_Pause
+ */
+
+/* ==========================================================================
+   General Styles
+   ========================================================================== */
+
+.uopwc-wrap {
+    max-width: 1200px;
+}
+
+.uopwc-wrap h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.uopwc-wrap h1 .dashicons {
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+}
+
+/* ==========================================================================
+   Tab Navigation
+   ========================================================================== */
+
+.uopwc-tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 0 0 20px 0;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.uopwc-tab-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: #50575e;
+    font-size: 14px;
+    font-weight: 500;
+    border-right: 1px solid #c3c4c7;
+    transition: all 0.15s ease;
+}
+
+.uopwc-tab-link:last-child {
+    border-right: none;
+}
+
+.uopwc-tab-link:hover {
+    background: #f6f7f7;
+    color: #2271b1;
+}
+
+.uopwc-tab-link.active {
+    background: #f0b849;
+    color: #fff;
+}
+
+.uopwc-tab-link .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+
+.uopwc-card {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.uopwc-card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.uopwc-card .description {
+    color: #646970;
+    margin-bottom: 15px;
+}
+
+/* ==========================================================================
+   Status Card (Dashboard)
+   ========================================================================== */
+
+.uopwc-status-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+}
+
+.uopwc-status-card.paused {
+    border-left: 4px solid #dc3545;
+    background: linear-gradient(135deg, #fff 0%, #fff5f5 100%);
+}
+
+.uopwc-status-card.active {
+    border-left: 4px solid #28a745;
+    background: linear-gradient(135deg, #fff 0%, #f0fff4 100%);
+}
+
+.uopwc-status-indicator {
+    flex-shrink: 0;
+}
+
+.uopwc-status-indicator .dashicons {
+    font-size: 60px;
+    width: 60px;
+    height: 60px;
+}
+
+.uopwc-status-card.paused .uopwc-status-indicator .dashicons {
+    color: #dc3545;
+}
+
+.uopwc-status-card.active .uopwc-status-indicator .dashicons {
+    color: #28a745;
+}
+
+.uopwc-status-content {
+    flex: 1;
+}
+
+.uopwc-status-content h2 {
+    margin: 0 0 5px 0;
+    font-size: 24px;
+}
+
+.uopwc-status-card.paused .uopwc-status-content h2 {
+    color: #dc3545;
+}
+
+.uopwc-status-card.active .uopwc-status-content h2 {
+    color: #28a745;
+}
+
+.uopwc-pause-info,
+.uopwc-pause-reason {
+    margin: 5px 0;
+    color: #666;
+}
+
+.uopwc-status-actions {
+    flex-shrink: 0;
+}
+
+.uopwc-status-actions .button-hero {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 30px;
+    height: auto;
+    line-height: 1.5;
+}
+
+.uopwc-status-actions .uopwc-pause-btn {
+    background: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+}
+
+.uopwc-status-actions .uopwc-pause-btn:hover {
+    background: #c82333;
+    border-color: #bd2130;
+    color: #fff;
+}
+
+/* ==========================================================================
+   Quick Actions
+   ========================================================================== */
+
+.uopwc-quick-actions {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.uopwc-quick-actions h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.uopwc-quick-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.uopwc-quick-buttons .button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    height: auto;
+}
+
+.uopwc-quick-buttons .button .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+/* ==========================================================================
+   Custom Pause Form
+   ========================================================================== */
+
+.uopwc-custom-pause .uopwc-form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.uopwc-custom-pause label {
+    font-weight: 500;
+}
+
+.uopwc-custom-pause input[type="datetime-local"],
+.uopwc-custom-pause input[type="text"] {
+    max-width: 300px;
+}
+
+/* ==========================================================================
+   Settings Form
+   ========================================================================== */
+
+.uopwc-settings-form .uopwc-form-row {
+    margin-bottom: 20px;
+}
+
+.uopwc-settings-form label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.uopwc-settings-form .uopwc-checkbox-row label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.uopwc-settings-form textarea {
+    width: 100%;
+    max-width: 600px;
+}
+
+.uopwc-settings-form select {
+    min-width: 200px;
+}
+
+.uopwc-form-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e2e4e7;
+}
+
+.uopwc-form-actions .button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.uopwc-save-status {
+    font-style: italic;
+    color: #646970;
+}
+
+.uopwc-save-status.success {
+    color: #28a745;
+}
+
+.uopwc-save-status.error {
+    color: #dc3545;
+}
+
+/* ==========================================================================
+   Schedule Tab
+   ========================================================================== */
+
+.uopwc-pause-modes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.uopwc-mode-option {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 2px solid #e2e4e7;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.uopwc-mode-option:hover {
+    border-color: #f0b849;
+    background: #fffbf0;
+}
+
+.uopwc-mode-option.selected {
+    border-color: #f0b849;
+    background: #fffbf0;
+}
+
+.uopwc-mode-option input[type="radio"] {
+    display: none;
+}
+
+.uopwc-mode-option .dashicons {
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    color: #f0b849;
+}
+
+.uopwc-mode-option strong {
+    font-size: 16px;
+}
+
+.uopwc-mode-option .description {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+.uopwc-time-range {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.uopwc-time-range .uopwc-form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.uopwc-timezone-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: #f0f6fc;
+    border-radius: 4px;
+    color: #2271b1;
+}
+
+.uopwc-timezone-info .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+/* Weekly Schedule Table */
+.uopwc-schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.uopwc-schedule-table th,
+.uopwc-schedule-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e2e4e7;
+}
+
+.uopwc-schedule-table th {
+    background: #f9f9f9;
+    font-weight: 600;
+}
+
+.uopwc-schedule-table select,
+.uopwc-schedule-table input[type="time"] {
+    width: 100%;
+    max-width: 150px;
+}
+
+/* ==========================================================================
+   License Tab
+   ========================================================================== */
+
+.uopwc-license-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.uopwc-license-status.active {
+    background: #d4edda;
+    color: #155724;
+}
+
+.uopwc-license-status.inactive {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.uopwc-license-status .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.uopwc-license-form .uopwc-form-row {
+    margin-bottom: 15px;
+}
+
+.uopwc-license-form input[type="text"] {
+    width: 100%;
+    max-width: 400px;
+    font-family: monospace;
+}
+
+.uopwc-license-info {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.uopwc-license-info p {
+    margin: 5px 0;
+}
+
+.uopwc-license-actions {
+    margin-top: 15px;
+}
+
+.uopwc-info-table {
+    width: 100%;
+    max-width: 400px;
+}
+
+.uopwc-info-table th,
+.uopwc-info-table td {
+    padding: 8px 0;
+    border-bottom: 1px solid #e2e4e7;
+}
+
+.uopwc-info-table th {
+    text-align: left;
+    font-weight: 500;
+    width: 40%;
+}
+
+.uopwc-check-updates {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e2e4e7;
+}
+
+.uopwc-check-updates .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.uopwc-update-status {
+    margin-left: 10px;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+
+@media (max-width: 960px) {
+    .uopwc-tabs-nav {
+        flex-direction: column;
+    }
+    
+    .uopwc-tab-link {
+        border-right: none;
+        border-bottom: 1px solid #c3c4c7;
+    }
+    
+    .uopwc-tab-link:last-child {
+        border-bottom: none;
+    }
+    
+    .uopwc-status-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .uopwc-status-content h2 {
+        font-size: 20px;
+    }
+    
+    .uopwc-quick-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .uopwc-pause-modes {
+        grid-template-columns: 1fr;
+    }
+    
+    .uopwc-time-range {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .uopwc-schedule-table {
+        font-size: 13px;
+    }
+    
+    .uopwc-schedule-table th,
+    .uopwc-schedule-table td {
+        padding: 8px 5px;
+    }
+}

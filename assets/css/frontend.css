@@ -1,0 +1,205 @@
+/**
+ * Unstoppable Order Pause - Frontend Styles
+ *
+ * Styles for the pause notice displayed to customers.
+ *
+ * @package Unstoppable_Order_Pause
+ */
+
+/* ==========================================================================
+   Pause Notice
+   ========================================================================== */
+
+.uopwc-pause-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.uopwc-notice-icon {
+    flex-shrink: 0;
+}
+
+.uopwc-notice-icon .dashicons {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+}
+
+.uopwc-notice-content {
+    flex: 1;
+}
+
+.uopwc-notice-message {
+    margin: 0 0 10px 0;
+    font-weight: 500;
+}
+
+/* Notice Styles */
+.uopwc-notice-warning {
+    background: linear-gradient(135deg, #fff8e6 0%, #fff3cd 100%);
+    border: 1px solid #ffc107;
+    border-left: 4px solid #ffc107;
+}
+
+.uopwc-notice-warning .uopwc-notice-icon .dashicons {
+    color: #ffc107;
+}
+
+.uopwc-notice-error {
+    background: linear-gradient(135deg, #fff5f5 0%, #f8d7da 100%);
+    border: 1px solid #dc3545;
+    border-left: 4px solid #dc3545;
+}
+
+.uopwc-notice-error .uopwc-notice-icon .dashicons {
+    color: #dc3545;
+}
+
+.uopwc-notice-info {
+    background: linear-gradient(135deg, #f0f6fc 0%, #cce5ff 100%);
+    border: 1px solid #007bff;
+    border-left: 4px solid #007bff;
+}
+
+.uopwc-notice-info .uopwc-notice-icon .dashicons {
+    color: #007bff;
+}
+
+.uopwc-notice-success {
+    background: linear-gradient(135deg, #f0fff4 0%, #d4edda 100%);
+    border: 1px solid #28a745;
+    border-left: 4px solid #28a745;
+}
+
+.uopwc-notice-success .uopwc-notice-icon .dashicons {
+    color: #28a745;
+}
+
+/* ==========================================================================
+   Countdown Timer
+   ========================================================================== */
+
+.uopwc-countdown {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.uopwc-countdown-label {
+    font-weight: 500;
+    color: #666;
+}
+
+.uopwc-countdown-timer {
+    display: flex;
+    gap: 8px;
+}
+
+.uopwc-countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 8px 12px;
+    border-radius: 6px;
+    min-width: 50px;
+}
+
+.uopwc-countdown-value {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    color: #333;
+}
+
+.uopwc-countdown-label-small {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #666;
+    margin-top: 4px;
+}
+
+/* ==========================================================================
+   WooCommerce Integration
+   ========================================================================== */
+
+/* Style when add to cart is hidden */
+.woocommerce .product:not(.purchasable) .single_add_to_cart_button,
+.woocommerce .product:not(.purchasable) .add_to_cart_button {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/* Notice in WooCommerce notices area */
+.woocommerce-notices-wrapper .uopwc-pause-notice {
+    margin-top: 0;
+}
+
+/* Cart page specific */
+.woocommerce-cart .uopwc-pause-notice {
+    margin-bottom: 30px;
+}
+
+/* Checkout page - more prominent */
+.woocommerce-checkout .uopwc-pause-notice {
+    margin-bottom: 30px;
+    padding: 25px;
+}
+
+.woocommerce-checkout .uopwc-pause-notice .uopwc-notice-message {
+    font-size: 16px;
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+
+@media (max-width: 600px) {
+    .uopwc-pause-notice {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .uopwc-notice-icon {
+        margin-bottom: 5px;
+    }
+    
+    .uopwc-countdown {
+        justify-content: center;
+    }
+    
+    .uopwc-countdown-unit {
+        padding: 6px 10px;
+        min-width: 45px;
+    }
+    
+    .uopwc-countdown-value {
+        font-size: 18px;
+    }
+}
+
+/* ==========================================================================
+   Animation
+   ========================================================================== */
+
+@keyframes uopwc-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.uopwc-pause-notice .uopwc-notice-icon .dashicons {
+    animation: uopwc-pulse 2s ease-in-out infinite;
+}
