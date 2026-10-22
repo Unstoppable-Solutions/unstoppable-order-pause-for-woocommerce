@@ -191,6 +191,7 @@ class UOPWC_Admin {
                             $pause_time = strtotime( $pause_until );
                             if ( $pause_time && $pause_time > time() ) {
                                 printf(
+                                    /* translators: %s: formatted resume date and time (e.g. "March 15, 2026 2:30 pm"). */
                                     esc_html__( 'Orders will resume at %s', 'unstoppable-order-pause-for-woocommerce' ),
                                     esc_html( date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $pause_time ) )
                                 );
@@ -245,8 +246,8 @@ class UOPWC_Admin {
                 <form id="uopwc-custom-pause-form">
                     <div class="uopwc-form-row">
                         <label for="uopwc-pause-until-date"><?php esc_html_e( 'Pause Until:', 'unstoppable-order-pause-for-woocommerce' ); ?></label>
-                        <input type="datetime-local" id="uopwc-pause-until-date" name="pause_until" 
-                               value="<?php echo esc_attr( $pause_until ? date( 'Y-m-d\TH:i', strtotime( $pause_until ) ) : '' ); ?>">
+                        <input type="datetime-local" id="uopwc-pause-until-date" name="pause_until"
+                               value="<?php echo esc_attr( $pause_until ? date( 'Y-m-d\TH:i', strtotime( $pause_until ) ) : '' ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date -- Form value for datetime-local input; stored and consumed in the same local timezone. ?>">
                     </div>
                     <div class="uopwc-form-row">
                         <label for="uopwc-pause-reason"><?php esc_html_e( 'Reason (optional):', 'unstoppable-order-pause-for-woocommerce' ); ?></label>
@@ -437,9 +438,10 @@ class UOPWC_Admin {
                     <span class="dashicons dashicons-info"></span>
                     <?php 
                     printf(
+                        /* translators: %s: WordPress timezone string (e.g. "America/New_York"). */
                         esc_html__( 'Times are based on your WordPress timezone: %s', 'unstoppable-order-pause-for-woocommerce' ),
                         '<strong>' . esc_html( wp_timezone_string() ) . '</strong>'
-                    ); 
+                    );
                     ?>
                 </p>
             </div>
@@ -725,8 +727,10 @@ class UOPWC_Admin {
         
         wp_send_json_success( array(
             'paused'      => true,
+            // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date -- Local-timezone string matches the same format stored in the uopwc_pause_until option.
             'pause_until' => date( 'Y-m-d H:i:s', $pause_time ),
             'message'     => sprintf(
+                /* translators: %s: formatted date and time until which orders are paused. */
                 __( 'Orders paused until %s', 'unstoppable-order-pause-for-woocommerce' ),
                 date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $pause_time )
             ),

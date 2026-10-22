@@ -90,8 +90,9 @@ class UOPWC_Admin_Bar {
                     $wp_admin_bar->add_node( array(
                         'id'     => 'uopwc-pause-info',
                         'parent' => 'uopwc-order-pause',
-                        'title'  => '<span class="uopwc-pause-until-info">' . 
-                                    sprintf( 
+                        'title'  => '<span class="uopwc-pause-until-info">' .
+                                    sprintf(
+                                        /* translators: %s: formatted resume date and time (e.g. "Mar 15, 2:30 pm"). */
                                         __( 'Resumes: %s', 'unstoppable-order-pause-for-woocommerce' ),
                                         date_i18n( 'M j, g:i a', $pause_time )
                                     ) . '</span>',
@@ -330,6 +331,7 @@ class UOPWC_Admin_Bar {
             $message = __( 'Orders paused!', 'unstoppable-order-pause-for-woocommerce' );
             if ( $pause_until ) {
                 $message = sprintf(
+                    /* translators: %s: formatted time until which orders are paused (e.g. "5:30 pm"). */
                     __( 'Orders paused until %s', 'unstoppable-order-pause-for-woocommerce' ),
                     date_i18n( get_option( 'time_format' ), $pause_until )
                 );

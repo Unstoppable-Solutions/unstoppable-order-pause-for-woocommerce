@@ -155,6 +155,7 @@ class UOPWC_Pause_Handler {
         update_option( 'uopwc_manually_paused', 'yes' );
         
         if ( $until ) {
+            // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date -- Stored in local timezone; read back via strtotime() which assumes the same. Changing to gmdate() would silently invalidate values written by earlier releases on upgrade.
             update_option( 'uopwc_pause_until', date( 'Y-m-d H:i:s', $until ) );
         } else {
             delete_option( 'uopwc_pause_until' );
@@ -224,6 +225,7 @@ class UOPWC_Pause_Handler {
                 // Calculate next opening time
                 if ( $current_time >= get_option( 'uopwc_daily_close_time', '22:00' ) ) {
                     // After closing, next opening is tomorrow
+                    // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date -- Daily business-hours calculation; must stay in the site's local timezone, same as current_time() above.
                     $pause_until = date( 'Y-m-d', strtotime( '+1 day' ) ) . ' ' . $open_time . ':00';
                 } else {
                     // Before opening today
