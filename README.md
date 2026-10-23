@@ -32,6 +32,11 @@ Releases are deployed to WordPress.org automatically by GitHub Actions:
 
 Every push and pull request runs the official WordPress Plugin Check against the codebase.
 
+### Planning & history
+
+- [`ROADMAP.md`](ROADMAP.md) — planned fixes, features, and milestones.
+- [`CHANGELOG.md`](CHANGELOG.md) — release history (mirrors the `readme.txt` changelog).
+
 ## License
 
 GPL-2.0-or-later. See the `License` header in `unstoppable-order-pause-for-woocommerce.php`.
