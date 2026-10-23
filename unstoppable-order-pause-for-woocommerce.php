@@ -5,7 +5,7 @@
  * Description:       Pause orders for the day or schedule breaks during busy hours. Quick toggle from admin bar under Options Studio.
  * Version:           1.2.0
  * Requires at least: 6.0
- * Tested up to:      7.1
+ * Tested up to:      7.1.3
  * Requires PHP:      7.4
  * Author:            Unstoppable Solutions
  * Author URI:        https://unstoppablesolutions.app
