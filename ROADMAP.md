@@ -33,7 +33,7 @@ Priorities: **P1** correctness/security, **P2** reliability & compatibility,
 
 ## Milestone v1.3.x — reliability & block checkout (P1–P2)
 
-- **[New] P1 — Enforce the pause on the block-based Checkout (Store API).**
+- **[New] P1 — Enforce the pause on the block-based Checkout (Store API).** _(tracked in #1)_
   Current enforcement runs through `woocommerce_check_cart_items`,
   `woocommerce_is_purchasable`, and a classic-checkout redirect. The Cart/Checkout
   Blocks compatibility flag is declared, but a store using the block Checkout can
@@ -41,14 +41,14 @@ Priorities: **P1** correctness/security, **P2** reliability & compatibility,
   `woocommerce_store_api_cart_errors` / checkout validation callbacks) so a paused
   store genuinely rejects block-checkout orders. **This is the highest-value fix:
   the whole point of the plugin is that paused means paused.**
-- **[New] P2 — Reliable timed auto-resume via scheduling.** Expiry of a timed
+- **[New] P2 — Reliable timed auto-resume via scheduling.** _(tracked in #2)_ Expiry of a timed
   pause (e.g. "Pause 30 Minutes") is currently evaluated on page load
   (`is_orders_paused()` / `check_scheduled_pause()` on `init`). On a low-traffic
   store with no visitors, orders stay paused past the intended resume time. Move
   auto-resume onto WooCommerce's Action Scheduler (preferred — already bundled) or
   WP-Cron, scheduled at the exact resume timestamp, with the page-load check kept
   as a fallback.
-- **[New] P2 — Countdown for weekly schedule mode.** `get_countdown_data()`
+- **[New] P2 — Countdown for weekly schedule mode.** _(tracked in #3)_ `get_countdown_data()`
   computes the next open time for `daily` mode only; `weekly` mode returns no
   countdown. Compute the next opening slot for weekly schedules too.
 
@@ -74,7 +74,7 @@ Priorities: **P1** correctness/security, **P2** reliability & compatibility,
 
 ## Pro / Base44 track (P3) **(Pro)**
 
-- **[Discussed] Wire up licensing / Pro gating.** `includes/class-uop-license.php`
+- **[Discussed] Wire up licensing / Pro gating.** _(tracked in #4)_ `includes/class-uop-license.php`
   implements activate/validate/deactivate against the Base44 endpoint, but the
   class is **not currently instantiated** by the main bootstrap
   (`init_components()` creates Admin, Pause_Handler, and Admin_Bar only). Decide
