@@ -10,9 +10,7 @@ this plugin.
 
 ## [Unreleased]
 
-### Changed
-
-- Bumped **Tested up to** from 7.1 to 7.1.3 (current WordPress release).
+_No user-facing changes yet._
 
 ## [1.2.0]
 
