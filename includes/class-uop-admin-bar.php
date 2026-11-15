@@ -56,11 +56,12 @@ class UOPWC_Admin_Bar {
         
         $status_class = $is_paused ? 'uopwc-status-paused' : 'uopwc-status-active';
         
-        // Add Order Pause item under Options Studio
+        // Add Order Pause as a top-level admin-bar item (not nested under the
+        // Options Studio menu) so the status + quick toggle is one click away
+        // from anywhere. The Options Studio menu still keeps its settings link.
         $wp_admin_bar->add_node( array(
             'id'     => 'uopwc-order-pause',
-            'parent' => 'unstoppable-studio',
-            'title'  => '<span class="uopwc-admin-bar-status ' . esc_attr( $status_class ) . '">' . 
+            'title'  => '<span class="uopwc-admin-bar-status ' . esc_attr( $status_class ) . '">' .
                         '<span class="dashicons ' . ( $is_paused ? 'dashicons-controls-pause' : 'dashicons-yes-alt' ) . '"></span>' .
                         esc_html( $status_text ) . '</span>',
             'href'   => admin_url( 'admin.php?page=uopwc-settings' ),

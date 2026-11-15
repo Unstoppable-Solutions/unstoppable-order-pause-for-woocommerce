@@ -97,6 +97,7 @@ Go to Options Studio → Order Pause → Settings tab. You can customize the mes
 == Changelog ==
 
 = 1.2.1 =
+* Improved: the Order Pause status and quick toggle now appear as their own item in the WordPress admin bar (instead of nested under the Options Studio menu), so pausing and resuming is one click from anywhere.
 * Fixed: saving the Schedule tab no longer resets the Settings tab options (and vice versa). Each tab now saves only its own fields, so the admin-bar toggle and notice options stay as you set them.
 * Compliance: moved the "Tested up to" value out of the main plugin header so it is declared only in readme.txt, per current WordPress.org requirements.
 * Confirmed compatibility with WordPress 7.1.
