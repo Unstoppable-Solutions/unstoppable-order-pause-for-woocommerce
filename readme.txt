@@ -4,7 +4,7 @@ Tags: woocommerce, pause orders, store closed, holiday mode, restaurant
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -97,6 +97,9 @@ Go to Options Studio → Order Pause → Settings tab. You can customize the mes
 4. Settings - customer message, display options, notice locations, and the admin-bar toggle
 
 == Changelog ==
+
+= 1.2.2 =
+* Housekeeping: restored the plugin's directory banner and icon (inadvertently removed during the 1.2.1 update). No functional changes.
 
 = 1.2.1 =
 * Improved: the Order Pause status and quick toggle now appear as their own item in the WordPress admin bar (instead of nested under the Options Studio menu), so pausing and resuming is one click from anywhere.

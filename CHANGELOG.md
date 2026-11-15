@@ -12,6 +12,12 @@ this plugin.
 
 _No user-facing changes yet._
 
+## [1.2.2] - 2026-11-15
+
+### Fixed
+
+- Restored the WordPress.org directory banner and icon that were removed during the 1.2.1 deploy (the deploy action mirrors `.wordpress-org/`, which did not yet contain them). No code changes; this release only re-syncs the listing assets.
+
 ## [1.2.1] - 2026-11-15
 
 ### Changed
