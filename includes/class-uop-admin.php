@@ -86,6 +86,7 @@ class UOPWC_Admin {
      * @return string
      */
     private function get_current_tab() {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only tab selector for admin UI navigation; no form data is processed or saved here.
         return isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : 'dashboard';
     }
 

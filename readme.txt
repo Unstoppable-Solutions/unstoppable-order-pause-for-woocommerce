@@ -4,7 +4,7 @@ Tags: woocommerce, pause orders, store closed, holiday mode, restaurant
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,11 @@ Go to Options Studio → Order Pause → Settings tab. You can customize the mes
 5. Frontend Notice - What customers see when orders are paused
 
 == Changelog ==
+
+= 1.2.1 =
+* Compliance: moved the "Tested up to" value out of the main plugin header so it is declared only in readme.txt, per current WordPress.org requirements.
+* Confirmed compatibility with WordPress 7.1.
+* Housekeeping: documented two non-blocking Plugin Check notices (admin tab read, debug-only error_log) with inline rationale.
 
 = 1.2.0 =
 * New: setting to show or hide the Order Pause toggle in the WordPress admin bar (shown by default)

@@ -70,6 +70,7 @@ class UOPWC_License {
         // Check for WP errors
         if ( is_wp_error( $response ) ) {
             if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Debug-only diagnostic, guarded by WP_DEBUG.
                 error_log( 'UOPWC License API Error (' . $this->plugin_slug . '): ' . $response->get_error_message() );
             }
             return $response;

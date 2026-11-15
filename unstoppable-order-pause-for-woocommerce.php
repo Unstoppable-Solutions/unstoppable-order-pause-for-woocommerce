@@ -3,9 +3,8 @@
  * Plugin Name:       Unstoppable Order Pause for WooCommerce
  * Plugin URI:        https://unstoppablesolutions.app/PluginDetail?slug=unstoppable-order-pause-for-woocommerce
  * Description:       Pause orders for the day or schedule breaks during busy hours. Quick toggle from admin bar under Options Studio.
- * Version:           1.2.0
+ * Version:           1.2.1
  * Requires at least: 6.0
- * Tested up to:      7.1
  * Requires PHP:      7.4
  * Author:            Unstoppable Solutions
  * Author URI:        https://unstoppablesolutions.app
@@ -35,7 +34,7 @@ add_action( 'before_woocommerce_init', function() {
 } );
 
 // Plugin constants
-define( 'UOPWC_VERSION', '1.2.0' );
+define( 'UOPWC_VERSION', '1.2.1' );
 define( 'UOPWC_PLUGIN_FILE', __FILE__ );
 define( 'UOPWC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'UOPWC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

@@ -12,6 +12,17 @@ this plugin.
 
 _No user-facing changes yet._
 
+## [1.2.1] - 2026-11-15
+
+### Changed
+
+- Moved the "Tested up to" value out of the main plugin header so it is declared only in `readme.txt`, per current WordPress.org requirements (`plugin_header_tested_up_to_not_allowed`).
+- Confirmed compatibility with WordPress 7.1.
+
+### Fixed
+
+- Documented two non-blocking Plugin Check notices with inline rationale: the read-only admin tab selector (`NonceVerification`) and a `WP_DEBUG`-guarded `error_log` in the dormant license handler.
+
 ## [1.2.0]
 
 ### Added
