@@ -97,6 +97,7 @@ Go to Options Studio → Order Pause → Settings tab. You can customize the mes
 == Changelog ==
 
 = 1.2.1 =
+* Fixed: saving the Schedule tab no longer resets the Settings tab options (and vice versa). Each tab now saves only its own fields, so the admin-bar toggle and notice options stay as you set them.
 * Compliance: moved the "Tested up to" value out of the main plugin header so it is declared only in readme.txt, per current WordPress.org requirements.
 * Confirmed compatibility with WordPress 7.1.
 * Housekeeping: documented two non-blocking Plugin Check notices (admin tab read, debug-only error_log) with inline rationale.

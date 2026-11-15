@@ -282,6 +282,7 @@ class UOPWC_Admin {
         ?>
         <form id="uopwc-settings-form" class="uopwc-settings-form">
             <?php wp_nonce_field( 'uopwc_save_settings', 'uopwc_nonce' ); ?>
+            <input type="hidden" name="uopwc_form" value="settings">
             
             <div class="uopwc-card">
                 <h3><?php esc_html_e( 'Customer Message', 'unstoppable-order-pause-for-woocommerce' ); ?></h3>
@@ -392,6 +393,7 @@ class UOPWC_Admin {
         ?>
         <form id="uopwc-schedule-form" class="uopwc-settings-form">
             <?php wp_nonce_field( 'uopwc_save_settings', 'uopwc_nonce' ); ?>
+            <input type="hidden" name="uopwc_form" value="schedule">
             
             <div class="uopwc-card">
                 <h3><?php esc_html_e( 'Pause Mode', 'unstoppable-order-pause-for-woocommerce' ); ?></h3>
@@ -602,54 +604,64 @@ class UOPWC_Admin {
             wp_send_json_error( array( 'message' => __( 'Permission denied.', 'unstoppable-order-pause-for-woocommerce' ) ) );
         }
         
-        // Get and sanitize settings
-        $settings_to_save = array(
-            'paused_message'   => isset( $_POST['paused_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['paused_message'] ) ) : '',
-            'show_countdown'   => isset( $_POST['show_countdown'] ) ? 'yes' : 'no',
-            'hide_add_to_cart' => isset( $_POST['hide_add_to_cart'] ) ? 'yes' : 'no',
-            'hide_checkout'    => isset( $_POST['hide_checkout'] ) ? 'yes' : 'no',
-            'show_notice_shop' => isset( $_POST['show_notice_shop'] ) ? 'yes' : 'no',
-            'show_notice_cart' => isset( $_POST['show_notice_cart'] ) ? 'yes' : 'no',
-            'show_admin_bar'   => isset( $_POST['show_admin_bar'] ) ? 'yes' : 'no',
-            'notice_style'     => isset( $_POST['notice_style'] ) ? sanitize_key( wp_unslash( $_POST['notice_style'] ) ) : 'warning',
-            'pause_mode'       => isset( $_POST['pause_mode'] ) ? sanitize_key( wp_unslash( $_POST['pause_mode'] ) ) : 'manual',
-            'daily_open_time'  => isset( $_POST['daily_open_time'] ) ? sanitize_text_field( wp_unslash( $_POST['daily_open_time'] ) ) : '08:00',
-            'daily_close_time' => isset( $_POST['daily_close_time'] ) ? sanitize_text_field( wp_unslash( $_POST['daily_close_time'] ) ) : '22:00',
-        );
-        
-        // Validate notice style
-        $allowed_styles = array( 'warning', 'error', 'info', 'success' );
-        if ( ! in_array( $settings_to_save['notice_style'], $allowed_styles, true ) ) {
-            $settings_to_save['notice_style'] = 'warning';
-        }
-        
-        // Validate pause mode
-        $allowed_modes = array( 'manual', 'daily', 'weekly' );
-        if ( ! in_array( $settings_to_save['pause_mode'], $allowed_modes, true ) ) {
-            $settings_to_save['pause_mode'] = 'manual';
-        }
-        
-        // Handle scheduled days for weekly mode
-        if ( isset( $_POST['scheduled_days'] ) && is_array( $_POST['scheduled_days'] ) ) {
-            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized in loop below
-            $raw_scheduled_days = wp_unslash( $_POST['scheduled_days'] );
-            $scheduled_days = array();
-            $allowed_days = array( 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday' );
-            
-            foreach ( $raw_scheduled_days as $day => $day_data ) {
-                $day = sanitize_key( $day );
-                if ( in_array( $day, $allowed_days, true ) && is_array( $day_data ) ) {
-                    $scheduled_days[ $day ] = array(
-                        'enabled' => isset( $day_data['enabled'] ) && sanitize_key( $day_data['enabled'] ) === 'yes' ? 'yes' : 'no',
-                        'open'    => isset( $day_data['open'] ) ? sanitize_text_field( $day_data['open'] ) : '08:00',
-                        'close'   => isset( $day_data['close'] ) ? sanitize_text_field( $day_data['close'] ) : '22:00',
-                    );
-                }
+        // Each settings tab posts its own form, so only save the fields that
+        // belong to the submitted form. Otherwise saving one tab would reset
+        // the unrelated checkboxes/fields on the other tab to their defaults
+        // (e.g. saving Schedule would silently turn off show_admin_bar).
+        $form = isset( $_POST['uopwc_form'] ) ? sanitize_key( wp_unslash( $_POST['uopwc_form'] ) ) : 'settings';
+
+        $settings_to_save = array();
+
+        if ( 'schedule' === $form ) {
+            // Schedule tab.
+            $settings_to_save['pause_mode']       = isset( $_POST['pause_mode'] ) ? sanitize_key( wp_unslash( $_POST['pause_mode'] ) ) : 'manual';
+            $settings_to_save['daily_open_time']  = isset( $_POST['daily_open_time'] ) ? sanitize_text_field( wp_unslash( $_POST['daily_open_time'] ) ) : '08:00';
+            $settings_to_save['daily_close_time'] = isset( $_POST['daily_close_time'] ) ? sanitize_text_field( wp_unslash( $_POST['daily_close_time'] ) ) : '22:00';
+
+            // Validate pause mode.
+            $allowed_modes = array( 'manual', 'daily', 'weekly' );
+            if ( ! in_array( $settings_to_save['pause_mode'], $allowed_modes, true ) ) {
+                $settings_to_save['pause_mode'] = 'manual';
             }
-            $settings_to_save['scheduled_days'] = $scheduled_days;
+
+            // Handle scheduled days for weekly mode.
+            if ( isset( $_POST['scheduled_days'] ) && is_array( $_POST['scheduled_days'] ) ) {
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized in loop below
+                $raw_scheduled_days = wp_unslash( $_POST['scheduled_days'] );
+                $scheduled_days = array();
+                $allowed_days = array( 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday' );
+
+                foreach ( $raw_scheduled_days as $day => $day_data ) {
+                    $day = sanitize_key( $day );
+                    if ( in_array( $day, $allowed_days, true ) && is_array( $day_data ) ) {
+                        $scheduled_days[ $day ] = array(
+                            'enabled' => isset( $day_data['enabled'] ) && sanitize_key( $day_data['enabled'] ) === 'yes' ? 'yes' : 'no',
+                            'open'    => isset( $day_data['open'] ) ? sanitize_text_field( $day_data['open'] ) : '08:00',
+                            'close'   => isset( $day_data['close'] ) ? sanitize_text_field( $day_data['close'] ) : '22:00',
+                        );
+                    }
+                }
+                $settings_to_save['scheduled_days'] = $scheduled_days;
+            }
+        } else {
+            // Settings tab.
+            $settings_to_save['paused_message']   = isset( $_POST['paused_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['paused_message'] ) ) : '';
+            $settings_to_save['show_countdown']   = isset( $_POST['show_countdown'] ) ? 'yes' : 'no';
+            $settings_to_save['hide_add_to_cart'] = isset( $_POST['hide_add_to_cart'] ) ? 'yes' : 'no';
+            $settings_to_save['hide_checkout']    = isset( $_POST['hide_checkout'] ) ? 'yes' : 'no';
+            $settings_to_save['show_notice_shop'] = isset( $_POST['show_notice_shop'] ) ? 'yes' : 'no';
+            $settings_to_save['show_notice_cart'] = isset( $_POST['show_notice_cart'] ) ? 'yes' : 'no';
+            $settings_to_save['show_admin_bar']   = isset( $_POST['show_admin_bar'] ) ? 'yes' : 'no';
+            $settings_to_save['notice_style']     = isset( $_POST['notice_style'] ) ? sanitize_key( wp_unslash( $_POST['notice_style'] ) ) : 'warning';
+
+            // Validate notice style.
+            $allowed_styles = array( 'warning', 'error', 'info', 'success' );
+            if ( ! in_array( $settings_to_save['notice_style'], $allowed_styles, true ) ) {
+                $settings_to_save['notice_style'] = 'warning';
+            }
         }
-        
-        // Save settings
+
+        // Save settings.
         foreach ( $settings_to_save as $key => $value ) {
             update_option( 'uopwc_' . $key, $value );
         }

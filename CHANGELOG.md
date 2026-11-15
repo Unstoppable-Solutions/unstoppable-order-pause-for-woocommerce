@@ -25,6 +25,7 @@ _No user-facing changes yet._
 
 ### Fixed
 
+- Settings persistence: the Settings and Schedule tabs are separate forms that shared one save handler, which rewrote **every** option on each save. Saving one tab silently reset the other tab's fields to defaults (notably turning off `show_admin_bar`, so the admin-bar quick toggle disappeared). Each form now carries a `uopwc_form` marker and the handler saves only that tab's fields.
 - Documented two non-blocking Plugin Check notices with inline rationale: the read-only admin tab selector (`NonceVerification`) and a `WP_DEBUG`-guarded `error_log` in the dormant license handler.
 
 ## [1.2.0]
