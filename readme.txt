@@ -91,11 +91,8 @@ Go to Options Studio → Order Pause → Settings tab. You can customize the mes
 
 == Screenshots ==
 
-1. Dashboard - Quick status overview and pause controls
-2. Admin Bar - Quick toggle directly from the toolbar
-3. Settings - Customize messages and display options
-4. Schedule - Set up daily or weekly operating hours
-5. Frontend Notice - What customers see when orders are paused
+1. Dashboard - orders active, with one-click "Pause Orders Now" and quick durations (30 minutes, 1 hour, 2 hours, rest of day)
+2. Dashboard - orders paused, with one-click "Resume Orders"
 
 == Changelog ==
 

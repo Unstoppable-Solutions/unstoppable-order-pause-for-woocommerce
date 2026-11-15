@@ -19,6 +19,10 @@ _No user-facing changes yet._
 - Moved the "Tested up to" value out of the main plugin header so it is declared only in `readme.txt`, per current WordPress.org requirements (`plugin_header_tested_up_to_not_allowed`).
 - Confirmed compatibility with WordPress 7.1.
 
+### Added
+
+- Directory screenshots for the plugin dashboard (orders active / orders paused), deployed to the WordPress.org listing via `.wordpress-org/`.
+
 ### Fixed
 
 - Documented two non-blocking Plugin Check notices with inline rationale: the read-only admin tab selector (`NonceVerification`) and a `WP_DEBUG`-guarded `error_log` in the dormant license handler.
