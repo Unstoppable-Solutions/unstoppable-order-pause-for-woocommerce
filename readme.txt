@@ -93,6 +93,8 @@ Go to Options Studio → Order Pause → Settings tab. You can customize the mes
 
 1. Dashboard - orders active, with one-click "Pause Orders Now" and quick durations (30 minutes, 1 hour, 2 hours, rest of day)
 2. Dashboard - orders paused, with one-click "Resume Orders"
+3. Quick pause/resume right from the WordPress admin bar - pause for 30 minutes, 1 or 2 hours, the rest of the day, or indefinitely, from any screen
+4. Settings - customer message, display options, notice locations, and the admin-bar toggle
 
 == Changelog ==
 

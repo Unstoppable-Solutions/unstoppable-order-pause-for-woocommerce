@@ -22,7 +22,7 @@ _No user-facing changes yet._
 
 ### Added
 
-- Directory screenshots for the plugin dashboard (orders active / orders paused), deployed to the WordPress.org listing via `.wordpress-org/`.
+- Directory screenshots deployed to the WordPress.org listing via `.wordpress-org/`: dashboard (orders active / orders paused), the admin-bar quick toggle, and the settings screen.
 
 ### Fixed
 
