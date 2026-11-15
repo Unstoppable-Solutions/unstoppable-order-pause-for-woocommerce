@@ -26,7 +26,9 @@ Releases are deployed to WordPress.org automatically by GitHub Actions:
 1. Finish the feature work on `main`
 2. Bump the version in `unstoppable-order-pause-for-woocommerce.php` (header + any constant), `readme.txt` (Stable tag), and add a Changelog entry
 3. Commit and push `main`
-4. On GitHub, create a new **Release** tagged `vX.Y.Z` — the deploy workflow fires and pushes to WordPress.org SVN
+4. On GitHub, create a new **Release** tagged `X.Y.Z` (no `v` prefix — the SVN tag must match `Stable tag` in `readme.txt`) — the deploy workflow fires and pushes to WordPress.org SVN
+
+> **Listing assets:** `.wordpress-org/` is the **single source of truth** for the WordPress.org listing assets. The deploy action mirrors it to the SVN `assets/` folder and **deletes anything in SVN that isn't in `.wordpress-org/`**. Keep the banner (`banner-1544x500.png`, `banner-772x250.png`), icon (`icon-128x128.png`, `icon-256x256.png`), and all `screenshot-N.png` files there — never remove one unless you intend it gone from the directory page.
 
 ### CI
 

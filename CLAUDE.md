@@ -27,7 +27,7 @@ Releases are deployed to WordPress.org SVN automatically by GitHub Actions. The 
    - `readme.txt` — `Stable tag:`
    - `readme.txt` — add a `== Changelog ==` entry
 3. Commit and push `main`.
-4. On GitHub, create a new **Release** tagged `vX.Y.Z` (semver) with the changelog in the body.
+4. On GitHub, create a new **Release** tagged `X.Y.Z` — **no `v` prefix** (the 10up deploy action uses the Git tag verbatim as the SVN tag, which must match `Stable tag` in readme.txt; `v1.2.1` would not match `1.2.1` and wp.org would not serve it) — with the changelog in the body.
 5. The `deploy-to-wporg.yml` workflow fires and pushes the release to WP.org SVN.
 
 ## CI
@@ -35,6 +35,10 @@ Releases are deployed to WordPress.org SVN automatically by GitHub Actions. The 
 Every push and PR runs the official WordPress Plugin Check against the codebase (`.github/workflows/plugin-check.yml`). CI must pass before merging. The deploy workflow (`.github/workflows/deploy-to-wporg.yml`) only fires on published Releases.
 
 **Secrets used by deploy:** `SVN_USERNAME`, `SVN_PASSWORD` — org-level secrets on `unstoppable-solutions`. Nothing per-repo.
+
+## WordPress.org listing assets (`.wordpress-org/`)
+
+The deploy action mirrors `.wordpress-org/` to the SVN `assets/` folder and **deletes any asset in SVN that is not present in `.wordpress-org/`**. All listing assets must therefore live in `.wordpress-org/`: `banner-1544x500.png`, `banner-772x250.png`, `icon-128x128.png`, `icon-256x256.png`, and every `screenshot-N.png`. Before deploying, confirm the banner and icon are present — omitting them removes them from the directory page. (They were lost once in v1.2.1 for this reason and restored afterward.)
 
 ## Known phpcs:ignores specific to this plugin
 
